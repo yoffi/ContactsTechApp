@@ -6,6 +6,27 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		2B877AE72D9F129000C31B5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B877ADE2D9F129000C31B5D /* Assets.xcassets */; };
+		2B877AE82D9F129000C31B5D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B877ADF2D9F129000C31B5D /* Info.plist */; };
+		2B877AE92D9F129000C31B5D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B877AE12D9F129000C31B5D /* LaunchScreen.storyboard */; };
+		2B877AEA2D9F129000C31B5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B877AE32D9F129000C31B5D /* Main.storyboard */; };
+		2B877AEB2D9F129000C31B5D /* HTTPClientInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B877AD12D9F129000C31B5D /* HTTPClientInterface.swift */; };
+		2B877AEC2D9F129000C31B5D /* JSONHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B877AD22D9F129000C31B5D /* JSONHTTPClient.swift */; };
+		2B877AED2D9F129000C31B5D /* RandomUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B877AD52D9F129000C31B5D /* RandomUserService.swift */; };
+		2B877AEE2D9F129000C31B5D /* RandomUserServiceInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B877AD62D9F129000C31B5D /* RandomUserServiceInterface.swift */; };
+		2B877AEF2D9F129000C31B5D /* RandomUserServiceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B877AD72D9F129000C31B5D /* RandomUserServiceResponse.swift */; };
+		2B877AF02D9F129000C31B5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B877ADD2D9F129000C31B5D /* AppDelegate.swift */; };
+		2B877AF12D9F129000C31B5D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B877AE42D9F129000C31B5D /* SceneDelegate.swift */; };
+		2B877AF22D9F129000C31B5D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B877AE52D9F129000C31B5D /* ViewController.swift */; };
+		2B877AF92D9F129A00C31B5D /* RamdomUserInvalidStubs.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B877AF52D9F129A00C31B5D /* RamdomUserInvalidStubs.json */; };
+		2B877AFA2D9F129A00C31B5D /* RamdomUserStubs.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B877AF62D9F129A00C31B5D /* RamdomUserStubs.json */; };
+		2B877AFB2D9F129A00C31B5D /* Data+FileLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B877AF32D9F129A00C31B5D /* Data+FileLoader.swift */; };
+		2B877AFC2D9F129A00C31B5D /* MockHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B877AF42D9F129A00C31B5D /* MockHTTPClient.swift */; };
+		2B877AFD2D9F129A00C31B5D /* RandomUserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B877AF72D9F129A00C31B5D /* RandomUserServiceTests.swift */; };
+		2BF396FF2D9E799A00A9EABB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2BF396FE2D9E799300A9EABB /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		2BF396E12D9E798700A9EABB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,41 +45,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B877AD12D9F129000C31B5D /* HTTPClientInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientInterface.swift; sourceTree = "<group>"; };
+		2B877AD22D9F129000C31B5D /* JSONHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHTTPClient.swift; sourceTree = "<group>"; };
+		2B877AD52D9F129000C31B5D /* RandomUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserService.swift; sourceTree = "<group>"; };
+		2B877AD62D9F129000C31B5D /* RandomUserServiceInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserServiceInterface.swift; sourceTree = "<group>"; };
+		2B877AD72D9F129000C31B5D /* RandomUserServiceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserServiceResponse.swift; sourceTree = "<group>"; };
+		2B877ADD2D9F129000C31B5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2B877ADE2D9F129000C31B5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2B877ADF2D9F129000C31B5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B877AE02D9F129000C31B5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2B877AE22D9F129000C31B5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2B877AE42D9F129000C31B5D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		2B877AE52D9F129000C31B5D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2B877AF32D9F129A00C31B5D /* Data+FileLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+FileLoader.swift"; sourceTree = "<group>"; };
+		2B877AF42D9F129A00C31B5D /* MockHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHTTPClient.swift; sourceTree = "<group>"; };
+		2B877AF52D9F129A00C31B5D /* RamdomUserInvalidStubs.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RamdomUserInvalidStubs.json; sourceTree = "<group>"; };
+		2B877AF62D9F129A00C31B5D /* RamdomUserStubs.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RamdomUserStubs.json; sourceTree = "<group>"; };
+		2B877AF72D9F129A00C31B5D /* RandomUserServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserServiceTests.swift; sourceTree = "<group>"; };
 		2BF396CA2D9E798600A9EABB /* ContactsTechApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactsTechApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BF396E02D9E798700A9EABB /* ContactsTechAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactsTechAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BF396EA2D9E798700A9EABB /* ContactsTechAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactsTechAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BF396FE2D9E799300A9EABB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.markdown; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		2BF396F22D9E798700A9EABB /* Exceptions for "ContactsTechApp" folder in "ContactsTechApp" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 2BF396C92D9E798600A9EABB /* ContactsTechApp */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		2BF396CC2D9E798600A9EABB /* ContactsTechApp */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				2BF396F22D9E798700A9EABB /* Exceptions for "ContactsTechApp" folder in "ContactsTechApp" target */,
-			);
-			path = ContactsTechApp;
-			sourceTree = "<group>";
-		};
-		2BF396E32D9E798700A9EABB /* ContactsTechAppTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ContactsTechAppTests;
-			sourceTree = "<group>";
-		};
-		2BF396ED2D9E798700A9EABB /* ContactsTechAppUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ContactsTechAppUITests;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2BF396C72D9E798600A9EABB /* Frameworks */ = {
@@ -85,13 +93,100 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B877AD32D9F129000C31B5D /* HTTP Network */ = {
+			isa = PBXGroup;
+			children = (
+				2B877AD12D9F129000C31B5D /* HTTPClientInterface.swift */,
+				2B877AD22D9F129000C31B5D /* JSONHTTPClient.swift */,
+			);
+			path = "HTTP Network";
+			sourceTree = "<group>";
+		};
+		2B877AD42D9F129000C31B5D /* Core Layer */ = {
+			isa = PBXGroup;
+			children = (
+				2B877AD32D9F129000C31B5D /* HTTP Network */,
+			);
+			path = "Core Layer";
+			sourceTree = "<group>";
+		};
+		2B877AD82D9F129000C31B5D /* Random User Service */ = {
+			isa = PBXGroup;
+			children = (
+				2B877AD52D9F129000C31B5D /* RandomUserService.swift */,
+				2B877AD62D9F129000C31B5D /* RandomUserServiceInterface.swift */,
+				2B877AD72D9F129000C31B5D /* RandomUserServiceResponse.swift */,
+			);
+			path = "Random User Service";
+			sourceTree = "<group>";
+		};
+		2B877AD92D9F129000C31B5D /* Domain Layer */ = {
+			isa = PBXGroup;
+			children = (
+				2B877AD82D9F129000C31B5D /* Random User Service */,
+			);
+			path = "Domain Layer";
+			sourceTree = "<group>";
+		};
+		2B877ADA2D9F129000C31B5D /* Contact Detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Contact Detail";
+			sourceTree = "<group>";
+		};
+		2B877ADB2D9F129000C31B5D /* Contact List */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Contact List";
+			sourceTree = "<group>";
+		};
+		2B877ADC2D9F129000C31B5D /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				2B877ADA2D9F129000C31B5D /* Contact Detail */,
+				2B877ADB2D9F129000C31B5D /* Contact List */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		2B877AE62D9F129000C31B5D /* ContactsTechApp */ = {
+			isa = PBXGroup;
+			children = (
+				2B877AD42D9F129000C31B5D /* Core Layer */,
+				2B877AD92D9F129000C31B5D /* Domain Layer */,
+				2B877ADC2D9F129000C31B5D /* Features */,
+				2B877ADD2D9F129000C31B5D /* AppDelegate.swift */,
+				2B877ADE2D9F129000C31B5D /* Assets.xcassets */,
+				2B877ADF2D9F129000C31B5D /* Info.plist */,
+				2B877AE12D9F129000C31B5D /* LaunchScreen.storyboard */,
+				2B877AE32D9F129000C31B5D /* Main.storyboard */,
+				2B877AE42D9F129000C31B5D /* SceneDelegate.swift */,
+				2B877AE52D9F129000C31B5D /* ViewController.swift */,
+			);
+			path = ContactsTechApp;
+			sourceTree = "<group>";
+		};
+		2B877AF82D9F129A00C31B5D /* ContactsTechAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				2B877AF32D9F129A00C31B5D /* Data+FileLoader.swift */,
+				2B877AF42D9F129A00C31B5D /* MockHTTPClient.swift */,
+				2B877AF52D9F129A00C31B5D /* RamdomUserInvalidStubs.json */,
+				2B877AF62D9F129A00C31B5D /* RamdomUserStubs.json */,
+				2B877AF72D9F129A00C31B5D /* RandomUserServiceTests.swift */,
+			);
+			path = ContactsTechAppTests;
+			sourceTree = "<group>";
+		};
 		2BF396C12D9E798600A9EABB = {
 			isa = PBXGroup;
 			children = (
-				2BF396CC2D9E798600A9EABB /* ContactsTechApp */,
-				2BF396E32D9E798700A9EABB /* ContactsTechAppTests */,
-				2BF396ED2D9E798700A9EABB /* ContactsTechAppUITests */,
+				2BF396FE2D9E799300A9EABB /* README.md */,
+				2B877AE62D9F129000C31B5D /* ContactsTechApp */,
 				2BF396CB2D9E798600A9EABB /* Products */,
+				2B877AF82D9F129A00C31B5D /* ContactsTechAppTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,9 +215,6 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				2BF396CC2D9E798600A9EABB /* ContactsTechApp */,
-			);
 			name = ContactsTechApp;
 			packageProductDependencies = (
 			);
@@ -143,9 +235,6 @@
 			dependencies = (
 				2BF396E22D9E798700A9EABB /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				2BF396E32D9E798700A9EABB /* ContactsTechAppTests */,
-			);
 			name = ContactsTechAppTests;
 			packageProductDependencies = (
 			);
@@ -165,9 +254,6 @@
 			);
 			dependencies = (
 				2BF396EC2D9E798700A9EABB /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				2BF396ED2D9E798700A9EABB /* ContactsTechAppUITests */,
 			);
 			name = ContactsTechAppUITests;
 			packageProductDependencies = (
@@ -225,6 +311,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B877AE72D9F129000C31B5D /* Assets.xcassets in Resources */,
+				2B877AE82D9F129000C31B5D /* Info.plist in Resources */,
+				2B877AF92D9F129A00C31B5D /* RamdomUserInvalidStubs.json in Resources */,
+				2B877AFA2D9F129A00C31B5D /* RamdomUserStubs.json in Resources */,
+				2B877AE92D9F129000C31B5D /* LaunchScreen.storyboard in Resources */,
+				2B877AEA2D9F129000C31B5D /* Main.storyboard in Resources */,
+				2BF396FF2D9E799A00A9EABB /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +342,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B877AFB2D9F129A00C31B5D /* Data+FileLoader.swift in Sources */,
+				2B877AFC2D9F129A00C31B5D /* MockHTTPClient.swift in Sources */,
+				2B877AFD2D9F129A00C31B5D /* RandomUserServiceTests.swift in Sources */,
+				2B877AEB2D9F129000C31B5D /* HTTPClientInterface.swift in Sources */,
+				2B877AEC2D9F129000C31B5D /* JSONHTTPClient.swift in Sources */,
+				2B877AED2D9F129000C31B5D /* RandomUserService.swift in Sources */,
+				2B877AEE2D9F129000C31B5D /* RandomUserServiceInterface.swift in Sources */,
+				2B877AEF2D9F129000C31B5D /* RandomUserServiceResponse.swift in Sources */,
+				2B877AF02D9F129000C31B5D /* AppDelegate.swift in Sources */,
+				2B877AF12D9F129000C31B5D /* SceneDelegate.swift in Sources */,
+				2B877AF22D9F129000C31B5D /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +384,25 @@
 			targetProxy = 2BF396EB2D9E798700A9EABB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2B877AE12D9F129000C31B5D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B877AE02D9F129000C31B5D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		2B877AE32D9F129000C31B5D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B877AE22D9F129000C31B5D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		2BF396F42D9E798700A9EABB /* Debug */ = {

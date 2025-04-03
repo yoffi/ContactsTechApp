@@ -1,0 +1,122 @@
+{
+  "results": [
+    {
+      "g3nder": "female",
+      "name": {
+        "title": "Miss",
+        "first": "Lyana",
+        "last": "Globenko"
+      },
+      "location": {
+        "street": {
+          "number": 2206,
+          "name": "Morineckiy provulok"
+        },
+        "city": "Fastiv",
+        "state": "Odeska",
+        "country": "Ukraine",
+        "postcode": 11406,
+        "coordinates": {
+          "latitude": "76.6388",
+          "longitude": "112.2758"
+        },
+        "timezone": {
+          "offset": "+6:00",
+          "description": "Almaty, Dhaka, Colombo"
+        }
+      },
+      "email": "lyana.globenko@example.com",
+      "login": {
+        "uuid": "732c39e9-0ce1-40e7-9d39-4835b34c7c59",
+        "username": "organicfish569",
+        "password": "colleen",
+        "salt": "W6fb4E11",
+        "md5": "eb8d1140fc212575f52814004c24f7cd",
+        "sha1": "8773721106df9a36c75c607cd563f53126dbc7a2",
+        "sha256": "64b73885234ccefb8eb19ecbaf0fb060453830568f421ff874933c27ed13c348"
+      },
+      "dob": {
+        "date": "1958-09-04T02:30:07.999Z",
+        "age": 66
+      },
+      "registered": {
+        "date": "2008-11-13T22:29:22.014Z",
+        "age": 16
+      },
+      "phone": "(067) H74-7360",
+      "cell": "(066) S32-0276",
+      "id": {
+        "name": "",
+        "value": null
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/72.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/72.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/72.jpg"
+      },
+      "nat": "UA"
+    },
+    {
+      "gender": "female",
+      "name": {
+        "title": "Mrs",
+        "first": "Celia",
+        "last": "Risa"
+      },
+      "location": {
+        "street": {
+          "number": 7253,
+          "name": "Baglerfaret"
+        },
+        "city": "Lærdalsøyri",
+        "state": "Aust-Agder",
+        "country": "Norway",
+        "postcode": "4509",
+        "coordinates": {
+          "latitude": "-84.7416",
+          "longitude": "-158.2410"
+        },
+        "timezone": {
+          "offset": "+9:00",
+          "description": "Tokyo, Seoul, Osaka, Sapporo, Yakutsk"
+        }
+      },
+      "email": "celia.risa@example.com",
+      "login": {
+        "uuid": "b5313cab-d2a9-4db0-b18b-511ee792542d",
+        "username": "goldenfish237",
+        "password": "bluefish",
+        "salt": "Uwfg64EL",
+        "md5": "808ffccfb8907638c0965b0cb0ade8ea",
+        "sha1": "2583d5787b6eddb1b4e35992dd6b038a8225f528",
+        "sha256": "9bd358418b957be89cbcee28cf43eab58f4e7dc10d173d1a6c68a248d1c10694"
+      },
+      "dob": {
+        "date": "1991-01-10T03:25:00.990Z",
+        "age": 34
+      },
+      "registered": {
+        "date": "2020-10-08T15:19:50.995Z",
+        "age": 4
+      },
+      "phone": "87123780",
+      "cell": "42025942",
+      "id": {
+        "name": "FN",
+        "value": "10019114606"
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/71.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/71.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/71.jpg"
+      },
+      "nat": "NO"
+    }
+  ],
+  "info": {
+    "seed": "d4415f515eb86fbf",
+    "results": 10,
+    "page": 1,
+    "version": "1.4"
+  }
+}
