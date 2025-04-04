@@ -47,6 +47,9 @@ class MockURLProtocol: URLProtocol {
 }
 
 class MockBisURLProtocol: URLProtocol {
+  var error: Error?
+  var requestHandler: ((URLRequest) throws -> (HTTPURLResponse, Data))?
+  
   override class func canInit(with request: URLRequest) -> Bool {
     return true
   }
@@ -55,11 +58,14 @@ class MockBisURLProtocol: URLProtocol {
     return request
   }
   
-  static var requestHandler: ((URLRequest) throws -> (HTTPURLResponse, Data))?
-  
   override func startLoading() {
+    if let error = MockURLProtocol.error {
+      client?.urlProtocol(self, didFailWithError: error)
+      return
+    }
+    
     guard let handler = MockURLProtocol.requestHandler else {
-      assertionFailure("No request handler provided.")
+      assertionFailure("Received unexpected request with no handler set")
       return
     }
     
@@ -69,10 +75,10 @@ class MockBisURLProtocol: URLProtocol {
       client?.urlProtocol(self, didLoad: data)
       client?.urlProtocolDidFinishLoading(self)
     } catch {
-      assertionFailure(("Error handling the request: \(error)"))
+      client?.urlProtocol(self, didFailWithError: error)
     }
   }
   
-  override func stopLoading() {}
-  
+  override func stopLoading() {
+  }
 }

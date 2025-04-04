@@ -5,7 +5,6 @@
 //  Created by Joffrey Bocquet on 03/04/2025.
 //
 
-
 /// Concrete class implementation that fetch data over HTTP network request
 class RandomUserService: RandomUserServiceInterface {
   private let apiClient: any HTTPClientInterface

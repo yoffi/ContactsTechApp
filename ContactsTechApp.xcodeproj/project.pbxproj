@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B37BC662D9F1400008B9110 /* ContactListFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B37BC652D9F13F7008B9110 /* ContactListFactory.swift */; };
+		2B37BC672D9F1859008B9110 /* Data+FileLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B877AF32D9F129A00C31B5D /* Data+FileLoader.swift */; };
+		2B37BC682D9F1859008B9110 /* MockHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B877AF42D9F129A00C31B5D /* MockHTTPClient.swift */; };
+		2B37BC692D9F1859008B9110 /* RandomUserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B877AF72D9F129A00C31B5D /* RandomUserServiceTests.swift */; };
+		2B37BC6A2D9F1863008B9110 /* RamdomUserInvalidStubs.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B877AF52D9F129A00C31B5D /* RamdomUserInvalidStubs.json */; };
+		2B37BC6B2D9F1863008B9110 /* RamdomUserStubs.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B877AF62D9F129A00C31B5D /* RamdomUserStubs.json */; };
 		2B877AE72D9F129000C31B5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B877ADE2D9F129000C31B5D /* Assets.xcassets */; };
-		2B877AE82D9F129000C31B5D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B877ADF2D9F129000C31B5D /* Info.plist */; };
 		2B877AE92D9F129000C31B5D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B877AE12D9F129000C31B5D /* LaunchScreen.storyboard */; };
 		2B877AEA2D9F129000C31B5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B877AE32D9F129000C31B5D /* Main.storyboard */; };
 		2B877AEB2D9F129000C31B5D /* HTTPClientInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B877AD12D9F129000C31B5D /* HTTPClientInterface.swift */; };
@@ -19,11 +24,7 @@
 		2B877AF02D9F129000C31B5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B877ADD2D9F129000C31B5D /* AppDelegate.swift */; };
 		2B877AF12D9F129000C31B5D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B877AE42D9F129000C31B5D /* SceneDelegate.swift */; };
 		2B877AF22D9F129000C31B5D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B877AE52D9F129000C31B5D /* ViewController.swift */; };
-		2B877AF92D9F129A00C31B5D /* RamdomUserInvalidStubs.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B877AF52D9F129A00C31B5D /* RamdomUserInvalidStubs.json */; };
-		2B877AFA2D9F129A00C31B5D /* RamdomUserStubs.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B877AF62D9F129A00C31B5D /* RamdomUserStubs.json */; };
-		2B877AFB2D9F129A00C31B5D /* Data+FileLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B877AF32D9F129A00C31B5D /* Data+FileLoader.swift */; };
-		2B877AFC2D9F129A00C31B5D /* MockHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B877AF42D9F129A00C31B5D /* MockHTTPClient.swift */; };
-		2B877AFD2D9F129A00C31B5D /* RandomUserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B877AF72D9F129A00C31B5D /* RandomUserServiceTests.swift */; };
+		2BF38A432D9FC6A100BBBB13 /* ContactListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF38A422D9FC69B00BBBB13 /* ContactListViewController.swift */; };
 		2BF396FF2D9E799A00A9EABB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2BF396FE2D9E799300A9EABB /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B37BC652D9F13F7008B9110 /* ContactListFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListFactory.swift; sourceTree = "<group>"; };
 		2B877AD12D9F129000C31B5D /* HTTPClientInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientInterface.swift; sourceTree = "<group>"; };
 		2B877AD22D9F129000C31B5D /* JSONHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHTTPClient.swift; sourceTree = "<group>"; };
 		2B877AD52D9F129000C31B5D /* RandomUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserService.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 		2B877AF52D9F129A00C31B5D /* RamdomUserInvalidStubs.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RamdomUserInvalidStubs.json; sourceTree = "<group>"; };
 		2B877AF62D9F129A00C31B5D /* RamdomUserStubs.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RamdomUserStubs.json; sourceTree = "<group>"; };
 		2B877AF72D9F129A00C31B5D /* RandomUserServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserServiceTests.swift; sourceTree = "<group>"; };
+		2BF38A422D9FC69B00BBBB13 /* ContactListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListViewController.swift; sourceTree = "<group>"; };
 		2BF396CA2D9E798600A9EABB /* ContactsTechApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactsTechApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BF396E02D9E798700A9EABB /* ContactsTechAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactsTechAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BF396EA2D9E798700A9EABB /* ContactsTechAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactsTechAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +141,8 @@
 		2B877ADB2D9F129000C31B5D /* Contact List */ = {
 			isa = PBXGroup;
 			children = (
+				2BF38A422D9FC69B00BBBB13 /* ContactListViewController.swift */,
+				2B37BC652D9F13F7008B9110 /* ContactListFactory.swift */,
 			);
 			path = "Contact List";
 			sourceTree = "<group>";
@@ -312,9 +317,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B877AE72D9F129000C31B5D /* Assets.xcassets in Resources */,
-				2B877AE82D9F129000C31B5D /* Info.plist in Resources */,
-				2B877AF92D9F129A00C31B5D /* RamdomUserInvalidStubs.json in Resources */,
-				2B877AFA2D9F129A00C31B5D /* RamdomUserStubs.json in Resources */,
 				2B877AE92D9F129000C31B5D /* LaunchScreen.storyboard in Resources */,
 				2B877AEA2D9F129000C31B5D /* Main.storyboard in Resources */,
 				2BF396FF2D9E799A00A9EABB /* README.md in Resources */,
@@ -325,6 +327,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B37BC6A2D9F1863008B9110 /* RamdomUserInvalidStubs.json in Resources */,
+				2B37BC6B2D9F1863008B9110 /* RamdomUserStubs.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,13 +346,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B877AFB2D9F129A00C31B5D /* Data+FileLoader.swift in Sources */,
-				2B877AFC2D9F129A00C31B5D /* MockHTTPClient.swift in Sources */,
-				2B877AFD2D9F129A00C31B5D /* RandomUserServiceTests.swift in Sources */,
 				2B877AEB2D9F129000C31B5D /* HTTPClientInterface.swift in Sources */,
+				2BF38A432D9FC6A100BBBB13 /* ContactListViewController.swift in Sources */,
 				2B877AEC2D9F129000C31B5D /* JSONHTTPClient.swift in Sources */,
 				2B877AED2D9F129000C31B5D /* RandomUserService.swift in Sources */,
 				2B877AEE2D9F129000C31B5D /* RandomUserServiceInterface.swift in Sources */,
+				2B37BC662D9F1400008B9110 /* ContactListFactory.swift in Sources */,
 				2B877AEF2D9F129000C31B5D /* RandomUserServiceResponse.swift in Sources */,
 				2B877AF02D9F129000C31B5D /* AppDelegate.swift in Sources */,
 				2B877AF12D9F129000C31B5D /* SceneDelegate.swift in Sources */,
@@ -360,6 +363,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B37BC672D9F1859008B9110 /* Data+FileLoader.swift in Sources */,
+				2B37BC682D9F1859008B9110 /* MockHTTPClient.swift in Sources */,
+				2B37BC692D9F1859008B9110 /* RandomUserServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,8 +424,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -446,8 +452,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -9,6 +9,7 @@ import Foundation
 import Testing
 @testable import ContactsTechApp
 
+@Suite(.serialized)
 struct RandomUserServiceTests {
   
   var mockedSession: URLSession = {
