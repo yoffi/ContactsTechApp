@@ -188,7 +188,6 @@ extension RandomUserService {
     }
     
     private static let ServerDateFormatter: ISO8601DateFormatter = {
-      print("ttoto loool jsuis al!!")
       let dateFormatter = ISO8601DateFormatter()
       dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
       return dateFormatter
