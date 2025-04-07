@@ -268,7 +268,7 @@ class ContactDetailViewController: UIViewController {
     let iconView = UIImageView()
     iconView.translatesAutoresizingMaskIntoConstraints = false
     iconView.contentMode = .scaleAspectFit
-    iconView.tintColor = .systemBlue
+    iconView.tintColor = .accent
     iconView.image = UIImage(systemName: iconName)
     
     // Size constraints for icon
@@ -280,6 +280,7 @@ class ContactDetailViewController: UIViewController {
     let titleLabel = UILabel()
     titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
     titleLabel.text = title
+    titleLabel.textColor = .secondaryLabel
     titleLabel.translatesAutoresizingMaskIntoConstraints = false
     
     // Add icon and title to header stack
@@ -287,7 +288,7 @@ class ContactDetailViewController: UIViewController {
     headerStack.addArrangedSubview(titleLabel)
     
     let separator = UIView()
-    separator.backgroundColor = .systemGray4
+    separator.backgroundColor = .secondarySystemBackground
     separator.translatesAutoresizingMaskIntoConstraints = false
     
     let detailsStack = UIStackView()
@@ -317,7 +318,6 @@ class ContactDetailViewController: UIViewController {
       detailsStack.bottomAnchor.constraint(equalTo: sectionView.bottomAnchor, constant: -16)
     ])
     
-    // Tag the stack for easy access later
     detailsStack.tag = 100
     
     return sectionView
@@ -334,7 +334,7 @@ class ContactDetailViewController: UIViewController {
     rowStack.translatesAutoresizingMaskIntoConstraints = false
     
     let titleLabel = UILabel()
-    titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+    titleLabel.font = .preferredFont(forTextStyle: .subheadline)
     titleLabel.text = title
     titleLabel.textColor = .secondaryLabel
     titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -342,7 +342,7 @@ class ContactDetailViewController: UIViewController {
     titleLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
     
     let valueLabel = UILabel()
-    valueLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+    valueLabel.font = .preferredFont(forTextStyle: .body)
     valueLabel.text = value
     valueLabel.textColor = .label
     valueLabel.numberOfLines = 0
@@ -350,7 +350,7 @@ class ContactDetailViewController: UIViewController {
     
     // Add tappable interaction for email and phone
     if isEmail || isPhone {
-      valueLabel.textColor = .systemBlue
+      valueLabel.textColor = .accent
       valueLabel.isUserInteractionEnabled = true
       
       let tapGesture = UITapGestureRecognizer(target: self, action: isEmail ? #selector(emailTapped(_:)) : #selector(phoneTapped(_:)))

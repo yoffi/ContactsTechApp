@@ -7,13 +7,21 @@
 
 import UIKit
 
-struct ConctactViewItem: Hashable {
+struct ContactViewItem: Hashable {
   let id: String
   let firstname: String
   let lastname: String
   let subtitle: String
   let alternativeText: String
   let avatarImage: URL?
+
+  func hash(into hasher: inout Hasher) {
+    hasher.combine(id)
+  }
+  
+  static func == (lhs: ContactViewItem, rhs: ContactViewItem) -> Bool {
+    return lhs.id == rhs.id
+  }
 }
 
 // MARK: - Custom TableViewCell
@@ -30,29 +38,30 @@ class ConctacTableViewCell: UITableViewCell {
     imageView.clipsToBounds = true
     imageView.layer.cornerRadius = 16
     imageView.translatesAutoresizingMaskIntoConstraints = false
-    imageView.tintColor = .systemBlue
+    imageView.tintColor = .accent
     return imageView
   }()
   
   private let nameLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+    label.font = .preferredFont(forTextStyle: .headline)
+    label.textColor = .accent
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
   
   private let subtitleLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont.systemFont(ofSize: 14)
-    label.textColor = .gray
+    label.font = .preferredFont(forTextStyle: .subheadline)
+    label.textColor = .label
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
   
   private let alternativeLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-    label.textColor = .systemGray
+    label.font = .preferredFont(forTextStyle: .caption1)
+    label.textColor = .secondaryLabel
     label.textAlignment = .right
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
@@ -123,7 +132,7 @@ class ConctacTableViewCell: UITableViewCell {
   
   // MARK: - Configure Cell
   
-  func configure(with person: ConctactViewItem) {
+  func configure(with person: ContactViewItem) {
     nameLabel.text = PersonNameComponentsFormatter.longStyle.shortNameFormatted(
       with: person.firstname,
       last: person.lastname
