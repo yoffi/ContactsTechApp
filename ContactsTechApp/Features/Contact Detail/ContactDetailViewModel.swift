@@ -13,12 +13,20 @@ struct ContactDetailViewItem {
 
 class ContactDetailViewModel {
   private var randomUserService: RandomUserServiceInterface
+  private var userID: String
 
-  init(randomUserService: RandomUserServiceInterface) {
+  init(randomUserService: RandomUserServiceInterface, userID: String) {
     self.randomUserService = randomUserService
+    self.userID = userID
   }
   
-  func loadDetail() async -> ContactDetailViewItem {
-    return ContactDetailViewItem(fullname: "todo")
+  func loadDetails() async -> (any UserInterface)? {
+    do {
+      let user = try await randomUserService.fetchUsers()
+      return user.first!
+    } catch {
+      print(error.localizedDescription)
+      return nil
+    }
   }
 }

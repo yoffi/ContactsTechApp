@@ -59,10 +59,8 @@ protocol StreetInterface {
 }
 
 protocol CoordinatesInterface {
-  var latitude: String { get }
-  var longitude: String { get }
-  var latitudeValue: Double? { get }
-  var longitudeValue: Double? { get }
+  var latitude: Double { get }
+  var longitude: Double { get }
 }
 
 protocol TimezoneInterface {

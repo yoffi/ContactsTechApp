@@ -25,7 +25,7 @@ class AppCoordinator: NSObject, Coordinator {
     )
     
     let configuration = URLSessionConfiguration.default
-    configuration.waitsForConnectivity = true
+    configuration.waitsForConnectivity = false
     configuration.requestCachePolicy = .useProtocolCachePolicy
     configuration.urlCache = cache
     
@@ -45,7 +45,9 @@ class AppCoordinator: NSObject, Coordinator {
   }
   
   func contactListViewController() -> UIViewController {
-    let contactListCoordinator = ContactListCoordinator(navigationController: navigationController)
+    let contactListCoordinator = ContactListCoordinator(
+      navigationController: navigationController,
+      client: AppCoordinator.httpClient)
     childCoordinators.append(contactListCoordinator)
     
     let controller = ContactListFactory.makeViewController(

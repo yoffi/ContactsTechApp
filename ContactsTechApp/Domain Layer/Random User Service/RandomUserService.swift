@@ -27,4 +27,19 @@ class RandomUserService: RandomUserServiceInterface {
         throw error
     }
   }
+  
+  func fetchUser(id: String) async throws -> any UserInterface {
+    let request = JSONHTTPClient.JSONRequest(
+      method: .get,
+      endpoint: "/api/?results=1"
+    )
+    
+    let result: Result<Response, HTTPClientError> = try await apiClient.execute(request)
+    switch result {
+      case .success(let response):
+        return response.results.first!
+      case .failure(let error):
+        throw error
+    }
+  }
 }

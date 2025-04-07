@@ -8,8 +8,10 @@
 import UIKit
 
 class ContactDetailFactory {
-  static func makeViewController(id: String, coordinator: Coordinator) -> UIViewController {
-    let viewController = ContactDetailViewController(coordinator: coordinator)
+  static func makeViewController(id: String, client: HTTPClientInterface, coordinator: Coordinator) -> UIViewController {
+    let viewController = ContactDetailViewController(
+      coordinator: coordinator,
+      viewModel: ContactDetailViewModel(randomUserService: RandomUserService(apiClient: client), userID: id))
     return viewController
   }
 }

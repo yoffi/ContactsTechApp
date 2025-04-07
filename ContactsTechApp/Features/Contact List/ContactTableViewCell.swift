@@ -9,7 +9,8 @@ import UIKit
 
 struct ConctactViewItem: Hashable {
   let id: String
-  let name: String
+  let firstname: String
+  let lastname: String
   let subtitle: String
   let alternativeText: String
   let avatarImage: URL?
@@ -123,7 +124,11 @@ class ConctacTableViewCell: UITableViewCell {
   // MARK: - Configure Cell
   
   func configure(with person: ConctactViewItem) {
-    nameLabel.text = person.name
+    nameLabel.text = PersonNameComponentsFormatter.longStyle.shortNameFormatted(
+      with: person.firstname,
+      last: person.lastname
+    )
+
     subtitleLabel.text = person.subtitle
     alternativeLabel.text = person.alternativeText
     

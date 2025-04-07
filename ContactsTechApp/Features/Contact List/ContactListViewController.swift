@@ -135,11 +135,11 @@ extension ContactListViewController {
 
 extension ContactListViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-    viewModel.willDisplayRowa(at: indexPath.row)
+    viewModel.willDisplayRow(at: indexPath.row)
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    cooridnator?.showContactDetails(for: viewModel.contacts[indexPath.row].name)
+    cooridnator?.showContactDetails(for: viewModel.contacts[indexPath.row].id)
   }
 }
 
@@ -160,6 +160,13 @@ extension ContactListViewController {
 
 extension ContactViewModel {
   var asContactViewItem: ConctactViewItem {
-    .init(id: id, name: name, subtitle: memberSince, alternativeText: country, avatarImage: thumnaillUrl)
+    .init(
+      id: id,
+      firstname: firstname,
+      lastname: lastname,
+      subtitle: DateFormatter.RelativeDateFormatter.localizedString(for: memberSince, relativeTo: .now),
+      alternativeText: country,
+      avatarImage: thumnaillUrl
+    )
   }
 }

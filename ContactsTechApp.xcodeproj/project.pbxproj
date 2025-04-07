@@ -36,6 +36,8 @@
 		2BF38AE62DA02D2A00BBBB13 /* ContactDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF38AE52DA02D2300BBBB13 /* ContactDetailViewModel.swift */; };
 		2BF38AE92DA03C1900BBBB13 /* ContactDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF38AE82DA03C0900BBBB13 /* ContactDetailCoordinator.swift */; };
 		2BF38AEC2DA3BD2300BBBB13 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF38AEB2DA3BD1600BBBB13 /* Connectivity.swift */; };
+		2BF38BFB2DA3DD4900BBBB13 /* PersonNameFormatter+Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF38BFA2DA3DD3A00BBBB13 /* PersonNameFormatter+Formatters.swift */; };
+		2BF38BFE2DA3DF1600BBBB13 /* NumberFormatter+Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF38BFD2DA3DF0E00BBBB13 /* NumberFormatter+Formatters.swift */; };
 		2BF396FF2D9E799A00A9EABB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2BF396FE2D9E799300A9EABB /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +89,8 @@
 		2BF38AE52DA02D2300BBBB13 /* ContactDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewModel.swift; sourceTree = "<group>"; };
 		2BF38AE82DA03C0900BBBB13 /* ContactDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailCoordinator.swift; sourceTree = "<group>"; };
 		2BF38AEB2DA3BD1600BBBB13 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
+		2BF38BFA2DA3DD3A00BBBB13 /* PersonNameFormatter+Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonNameFormatter+Formatters.swift"; sourceTree = "<group>"; };
+		2BF38BFD2DA3DF0E00BBBB13 /* NumberFormatter+Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Formatters.swift"; sourceTree = "<group>"; };
 		2BF396CA2D9E798600A9EABB /* ContactsTechApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactsTechApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BF396E02D9E798700A9EABB /* ContactsTechAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactsTechAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BF396EA2D9E798700A9EABB /* ContactsTechAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactsTechAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,10 +135,10 @@
 		2B877AD42D9F129000C31B5D /* Core Layer */ = {
 			isa = PBXGroup;
 			children = (
+				2BF38BFC2DA3DEEB00BBBB13 /* Formatters */,
 				2BF38AEB2DA3BD1600BBBB13 /* Connectivity.swift */,
 				2BF38AD92DA0147200BBBB13 /* UIImageView+Download.swift */,
 				2BF38AD52D9FD7A600BBBB13 /* Collection+SafeSubscript.swift */,
-				2BF38AD32D9FD6B000BBBB13 /* Date+Formatter.swift */,
 				2B877AD32D9F129000C31B5D /* HTTP Network */,
 			);
 			path = "Core Layer";
@@ -256,6 +260,16 @@
 				2B877ADF2D9F129000C31B5D /* Info.plist */,
 			);
 			path = Ressources;
+			sourceTree = "<group>";
+		};
+		2BF38BFC2DA3DEEB00BBBB13 /* Formatters */ = {
+			isa = PBXGroup;
+			children = (
+				2BF38BFD2DA3DF0E00BBBB13 /* NumberFormatter+Formatters.swift */,
+				2BF38BFA2DA3DD3A00BBBB13 /* PersonNameFormatter+Formatters.swift */,
+				2BF38AD32D9FD6B000BBBB13 /* Date+Formatter.swift */,
+			);
+			path = Formatters;
 			sourceTree = "<group>";
 		};
 		2BF396C12D9E798600A9EABB = {
@@ -422,10 +436,12 @@
 				2BF38A432D9FC6A100BBBB13 /* ContactListViewController.swift in Sources */,
 				2BF38AE92DA03C1900BBBB13 /* ContactDetailCoordinator.swift in Sources */,
 				2BF38A4A2D9FCA8100BBBB13 /* ConctactListViewModel.swift in Sources */,
+				2BF38BFE2DA3DF1600BBBB13 /* NumberFormatter+Formatters.swift in Sources */,
 				2BF38AE12DA01EBC00BBBB13 /* ContactListCoordinator.swift in Sources */,
 				2BF38A482D9FCA1300BBBB13 /* AppCoordinator.swift in Sources */,
 				2B877AEC2D9F129000C31B5D /* JSONHTTPClient.swift in Sources */,
 				2BF38ADA2DA0147200BBBB13 /* UIImageView+Download.swift in Sources */,
+				2BF38BFB2DA3DD4900BBBB13 /* PersonNameFormatter+Formatters.swift in Sources */,
 				2B877AED2D9F129000C31B5D /* RandomUserService.swift in Sources */,
 				2BF38AD82DA0145200BBBB13 /* ImageDataLoader.swift in Sources */,
 				2BF38A4C2D9FCD8400BBBB13 /* ContactTableViewCell.swift in Sources */,

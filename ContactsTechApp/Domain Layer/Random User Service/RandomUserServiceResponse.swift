@@ -102,16 +102,22 @@ extension RandomUserService {
   // MARK: - Coordinates
   
   struct Coordinates: Decodable, CoordinatesInterface {
-    let latitude: String
-    let longitude: String
+    let latitude: Double
+    let longitude: Double
     
-    // Computed properties to get double values if needed
-    var latitudeValue: Double? {
-      return Double(latitude)
+    private enum CodingKeys: String, CodingKey {
+      case latitude
+      case longitude
     }
     
-    var longitudeValue: Double? {
-      return Double(longitude)
+    init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      
+      let latitudeString = try container.decode(String.self, forKey: .latitude)
+      let longitudeString = try container.decode(String.self, forKey: .longitude)
+      
+      self.latitude = Double(latitudeString)!
+      self.longitude = Double(longitudeString)!
     }
   }
   

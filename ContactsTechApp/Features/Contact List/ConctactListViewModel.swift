@@ -10,8 +10,9 @@ import Observation
 
 struct ContactViewModel {
   let id: String
-  let name: String
-  let memberSince: String
+  let firstname: String
+  let lastname: String
+  let memberSince: Date
   let country: String
   let thumnaillUrl: URL?
 }
@@ -33,7 +34,7 @@ class ContactListViewModel {
       let users = try await randomUserService.fetchUsers()
       await self.handleNewUserResponse(users: users)
     } catch {
-      print(error)
+      print(error.localizedDescription)
     }
   }
   
@@ -49,7 +50,7 @@ class ContactListViewModel {
       let users = try await randomUserService.fetchUsers()
       await reloadContactsWith(users: users)
     } catch {
-      print(error)
+      print(error.localizedDescription)
     }
   }
   
@@ -61,7 +62,7 @@ class ContactListViewModel {
   }
 
   @MainActor
-  func willDisplayRowa(at index: Int) {
+  func willDisplayRow(at index: Int) {
     if index == contacts.count - 1 {
       Task {
         await self.loadContacts()
@@ -77,8 +78,9 @@ extension Array where Element == any UserInterface {
     map {
       .init(
         id: $0.login.uuid,
-        name: "\($0.name.first) \($0.name.last)",
-        memberSince: "member since: \($0.registered.date.relativeDate())",
+        firstname: $0.name.first,
+        lastname: $0.name.last,
+        memberSince: $0.registered.date,
         country: $0.nat,
         thumnaillUrl: $0.picture.medium
       )
