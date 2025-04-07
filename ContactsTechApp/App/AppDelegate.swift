@@ -9,17 +9,7 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-  
-  private func loadRocketSimConnect() {
-#if DEBUG
-    guard (Bundle(path: "/Applications/RocketSim.app/Contents/Frameworks/RocketSimConnectLinker.nocache.framework")?.load() == true) else {
-      print("Failed to load linker framework")
-      return
-    }
-    print("RocketSim Connect successfully linked")
-#endif
-  }
-  
+
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
     
@@ -32,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Called when a new scene session is being created.
     // Use this method to select a configuration to create the new scene with.
     
-    loadRocketSimConnect()
     return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
   }
 

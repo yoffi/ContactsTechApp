@@ -9,9 +9,9 @@ import UIKit
 
 class ContactDetailFactory {
   static func makeViewController(id: String, client: HTTPClientInterface, coordinator: Coordinator) -> UIViewController {
-    let viewController = ContactDetailViewController(
-      coordinator: coordinator,
-      viewModel: ContactDetailViewModel(randomUserService: RandomUserService(apiClient: client), userID: id))
+    let randomUserService = RandomUserService(apiClient: client)
+    let viewModel = ContactDetailViewModel(randomUserService: randomUserService, userID: id)
+    let viewController = ContactDetailViewController(coordinator: coordinator, viewModel: viewModel)
     return viewController
   }
 }

@@ -22,8 +22,8 @@ class ContactDetailViewModel {
   
   func loadDetails() async -> (any UserInterface)? {
     do {
-      let user = try await randomUserService.fetchUsers()
-      return user.first!
+      let user = try await randomUserService.fetchUser(id: userID)
+      return user
     } catch {
       print(error.localizedDescription)
       return nil

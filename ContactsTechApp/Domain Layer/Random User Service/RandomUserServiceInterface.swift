@@ -8,7 +8,8 @@
 import Foundation
 
 protocol RandomUserServiceInterface {
-  func fetchUsers() async throws -> [any UserInterface]
+  func fetchUsers(page: Int) async throws -> [any UserInterface]
+  func fetchUser(id: String) async throws -> any UserInterface
 }
 
 protocol UserInterface {

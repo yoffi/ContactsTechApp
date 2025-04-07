@@ -20,53 +20,46 @@ struct ContactViewModel {
 @Observable
 class ContactListViewModel {
   
-  private var randomUserService: RandomUserServiceInterface
-  
-  @MainActor
-  private(set) var contacts: [ContactViewModel] = []
+  @ObservationIgnored private var randomUserService: RandomUserServiceInterface
+  @MainActor private(set) var contacts: [ContactViewModel] = []
+  @ObservationIgnored private var pager = Pager()
+  actor Pager {
+    private(set) var page: Int = 0
+    
+    func next() -> Int {
+      page = page + 1
+      return page
+    }
+    
+    func reset() -> Int{
+      page = 1
+      return page
+    }
+  }
   
   init(randomUserService: RandomUserServiceInterface) {
     self.randomUserService = randomUserService
   }
   
-  func loadContacts() async  {
+  func loadContacts(with maxResultsPerPage: Int) async  {
     do {
-      let users = try await randomUserService.fetchUsers()
-      await self.handleNewUserResponse(users: users)
-    } catch {
-      print(error.localizedDescription)
-    }
-  }
-  
-  func handleNewUserResponse(users: [any UserInterface]) async {
-    let newContacts = users.asContactsViewModel
-    await MainActor.run {
-      self.contacts = self.contacts + newContacts
-    }
-  }
-  
-  func reloadContacts() async {
-    do {
-      let users = try await randomUserService.fetchUsers()
-      await reloadContactsWith(users: users)
-    } catch {
-      print(error.localizedDescription)
-    }
-  }
-  
-  func reloadContactsWith(users: [any UserInterface]) async {
-    let newContacts = users.asContactsViewModel
-    await MainActor.run {
-      self.contacts = newContacts
-    }
-  }
-
-  @MainActor
-  func willDisplayRow(at index: Int) {
-    if index == contacts.count - 1 {
-      Task {
-        await self.loadContacts()
+      let users = try await randomUserService.fetchUsers(page: pager.next())
+      await MainActor.run {
+        contacts = contacts + users.asContactsViewModel
       }
+    } catch {
+      print(error.localizedDescription)
+    }
+  }
+  
+  func reloadContacts(with maxResultsPerPage: Int) async {
+    do {
+      let users = try await randomUserService.fetchUsers(page: pager.reset())
+      await MainActor.run {
+        contacts = users.asContactsViewModel
+      }
+    } catch {
+      print(error.localizedDescription)
     }
   }
 }

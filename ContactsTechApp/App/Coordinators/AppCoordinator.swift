@@ -64,7 +64,7 @@ extension AppCoordinator: UINavigationControllerDelegate {
     didShow viewController: UIViewController,
     animated: Bool
   ) {
-    //manage our reference to child coordinator here and remove them from memory if the pop out
+    //manage our reference to child coordinator here and remove them from memory if the nav pop out
     guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from),
       !navigationController.viewControllers.contains(fromViewController) else {
       return

@@ -9,9 +9,11 @@ import UIKit
 
 class ContactDetailViewController: UIViewController {
   
-  private(set) var coordinator: Coordinator
+  private(set) weak var coordinator: Coordinator?
   private var viewModel: ContactDetailViewModel
   private var user: (any UserInterface)!
+  private var loadTask: Task<Void, Never>?
+  private var loadImageTask: Task<Void, Never>?
   private let scrollView = UIScrollView()
   private let contentView = UIView()
 
@@ -28,6 +30,11 @@ class ContactDetailViewController: UIViewController {
     fatalError("init(coder:) has not been implemented")
   }
   
+  deinit {
+    loadTask?.cancel()
+    loadImageTask?.cancel()
+  }
+  
 // MARK: - Life cycle
   
   override func viewDidLoad() {
@@ -36,10 +43,12 @@ class ContactDetailViewController: UIViewController {
     title = "Contact Detail"
     navigationController?.navigationBar.prefersLargeTitles = false
     setupUI()
-    Task { @MainActor in
+    loadTask = Task { @MainActor in
       if let user = await viewModel.loadDetails() {
-        self.user = user
-        configureUI()
+        await MainActor.run {
+          self.user = user
+          configureUI()
+        }
       }
     }
   }
@@ -126,7 +135,7 @@ class ContactDetailViewController: UIViewController {
   private func configureUI() {
     
     // Load user image
-    Task { @MainActor in
+    loadImageTask = Task {
       await userImageView.loadImage(from: user.picture.large)
     }
     

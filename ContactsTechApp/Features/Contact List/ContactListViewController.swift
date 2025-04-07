@@ -17,14 +17,16 @@ class ContactListViewController: UIViewController {
   
   private var viewModel: ContactListViewModel
   private(set) weak var cooridnator: (any ContactListActions)?
-  private var loadContactTask: Task<Void, Never>?
+  private var tasks = Set<Task<Void, Never>>()
   
   enum Section {
     case main
   }
   
-  private var dataSource: UITableViewDiffableDataSource<Section, ConctactViewItem>!
-
+  private let maxResultsPerPage: Int = 10
+  
+  private var dataSource: UITableViewDiffableDataSource<Section, ContactViewItem>!
+  
 
   // MARK: - UI Components
   
@@ -40,9 +42,20 @@ class ContactListViewController: UIViewController {
     return tableView
   }()
   
+  private lazy var  activityIndicator: UIActivityIndicatorView = {
+    let activityIndicator = UIActivityIndicatorView(style: .medium)
+    activityIndicator.color = .accent
+    activityIndicator.hidesWhenStopped = true
+    return activityIndicator
+  }()
+
+  
   private func setupUI() {
     title = "Contacts"
     view.backgroundColor = .systemBackground
+    
+    let barButtonItem = UIBarButtonItem(customView: activityIndicator)
+    navigationItem.trailingItemGroups = [.init(barButtonItems: [barButtonItem], representativeItem: nil)]
     
     // Add subviews
     view.addSubview(tableView)
@@ -70,7 +83,7 @@ class ContactListViewController: UIViewController {
   }
   
   deinit {
-    loadContactTask?.cancel()
+    tasks.forEach { $0.cancel() }
   }
   
   // MARK: - Life cycle
@@ -82,9 +95,19 @@ class ContactListViewController: UIViewController {
     setupTableViewDataSource()
     
     registerForViewModelChanges()
-    populateDataSource(items: [])
-    loadContactTask = Task {
-      await viewModel.loadContacts()
+    activityIndicator.startAnimating()
+    let loadTask = Task {
+      await viewModel.loadContacts(with: maxResultsPerPage)
+      activityIndicator.stopAnimating()
+    }
+    tasks.insert(loadTask)
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    if let selectedIndexPath = tableView.indexPathForSelectedRow {
+      tableView.deselectRow(at: selectedIndexPath, animated: true)
     }
   }
 
@@ -94,9 +117,9 @@ class ContactListViewController: UIViewController {
     _ = withObservationTracking {
       viewModel.contacts
     } onChange: {
-      Task { @MainActor in
-        self.populateDataSource(items: self.viewModel.contacts)
-        self.registerForViewModelChanges()
+      Task {
+        await self.populateDataSource(items: self.viewModel.contacts)
+        await self.registerForViewModelChanges()
       }
     }
   }
@@ -111,35 +134,54 @@ extension ContactListViewController {
       cellProvider: cellProviderFor(tableView:indexPath:item:))
   }
   
-  func cellProviderFor(tableView: UITableView, indexPath: IndexPath, item: ConctactViewItem) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: ConctacTableViewCell.identifier, for: indexPath) as? ConctacTableViewCell,
-          let contact = self.viewModel.contacts[safe: indexPath.row] else {
+  func cellProviderFor(tableView: UITableView, indexPath: IndexPath, item: ContactViewItem) -> UITableViewCell {
+    guard let cell = tableView.dequeueReusableCell(
+      withIdentifier: ConctacTableViewCell.identifier,
+      for: indexPath) as? ConctacTableViewCell  else {
       return UITableViewCell()
     }
     
-    cell.configure(with: contact.asContactViewItem)
+    cell.configure(with: item)
     
     return cell
   }
   
-  func populateDataSource(items: [ContactViewModel]) {
-    var snapshot = NSDiffableDataSourceSnapshot<Section, ConctactViewItem>()
+  private func populateDataSource(items: [ContactViewModel]) {
+    var snapshot = NSDiffableDataSourceSnapshot<Section, ContactViewItem>()
     snapshot.appendSections( [.main])
-    snapshot.appendItems(items.map(\.self).compactMap(\.asContactViewItem))
-    dataSource.apply(snapshot, animatingDifferences: true)
+    let itemIdentifiers = items.map(\.self).compactMap(\.asContactViewItem)
+    snapshot.appendItems(itemIdentifiers)
+    
+    if items.count <= maxResultsPerPage {
+      dataSource.applySnapshotUsingReloadData(snapshot)
+    } else {
+      dataSource.apply(snapshot, animatingDifferences: true)
+    }
+  }
+  
+  private func loadNextPageIfLastCellBeingDisplayAt(indexPath: IndexPath) {
+    let lastContactIndex = max(0, viewModel.contacts.count - 1)
+    if indexPath.row == lastContactIndex {
+      tasks.insert(Task {
+        await viewModel.loadContacts(with: maxResultsPerPage)
+      })
+    }
+
   }
 }
-
 
 // MARK: - Tableview Delegate
 
 extension ContactListViewController: UITableViewDelegate {
+  
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-    viewModel.willDisplayRow(at: indexPath.row)
+    loadNextPageIfLastCellBeingDisplayAt(indexPath: indexPath)
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    cooridnator?.showContactDetails(for: viewModel.contacts[indexPath.row].id)
+    if let item = dataSource.itemIdentifier(for: indexPath) {
+      cooridnator?.showContactDetails(for: item.id)
+    }
   }
 }
 
@@ -147,11 +189,9 @@ extension ContactListViewController: UITableViewDelegate {
 
 extension ContactListViewController {
   @objc func userDidPullToRefresh() {
-    loadContactTask = Task {
-      await viewModel.reloadContacts()
-      await MainActor.run {
-        tableView.refreshControl?.endRefreshing()
-      }
+    Task {
+      await viewModel.reloadContacts(with: maxResultsPerPage)
+      tableView.refreshControl?.endRefreshing()
     }
   }
 }
@@ -159,7 +199,7 @@ extension ContactListViewController {
 // MARK: - Convert
 
 extension ContactViewModel {
-  var asContactViewItem: ConctactViewItem {
+  var asContactViewItem: ContactViewItem {
     .init(
       id: id,
       firstname: firstname,

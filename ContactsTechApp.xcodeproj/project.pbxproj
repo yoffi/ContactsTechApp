@@ -35,7 +35,6 @@
 		2BF38AE32DA0204A00BBBB13 /* ContactDetailFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF38AE22DA0204200BBBB13 /* ContactDetailFactory.swift */; };
 		2BF38AE62DA02D2A00BBBB13 /* ContactDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF38AE52DA02D2300BBBB13 /* ContactDetailViewModel.swift */; };
 		2BF38AE92DA03C1900BBBB13 /* ContactDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF38AE82DA03C0900BBBB13 /* ContactDetailCoordinator.swift */; };
-		2BF38AEC2DA3BD2300BBBB13 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF38AEB2DA3BD1600BBBB13 /* Connectivity.swift */; };
 		2BF38BFB2DA3DD4900BBBB13 /* PersonNameFormatter+Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF38BFA2DA3DD3A00BBBB13 /* PersonNameFormatter+Formatters.swift */; };
 		2BF38BFE2DA3DF1600BBBB13 /* NumberFormatter+Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF38BFD2DA3DF0E00BBBB13 /* NumberFormatter+Formatters.swift */; };
 		2BF396FF2D9E799A00A9EABB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2BF396FE2D9E799300A9EABB /* README.md */; };
@@ -88,7 +87,6 @@
 		2BF38AE22DA0204200BBBB13 /* ContactDetailFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailFactory.swift; sourceTree = "<group>"; };
 		2BF38AE52DA02D2300BBBB13 /* ContactDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewModel.swift; sourceTree = "<group>"; };
 		2BF38AE82DA03C0900BBBB13 /* ContactDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailCoordinator.swift; sourceTree = "<group>"; };
-		2BF38AEB2DA3BD1600BBBB13 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		2BF38BFA2DA3DD3A00BBBB13 /* PersonNameFormatter+Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonNameFormatter+Formatters.swift"; sourceTree = "<group>"; };
 		2BF38BFD2DA3DF0E00BBBB13 /* NumberFormatter+Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Formatters.swift"; sourceTree = "<group>"; };
 		2BF396CA2D9E798600A9EABB /* ContactsTechApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactsTechApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,7 +134,6 @@
 			isa = PBXGroup;
 			children = (
 				2BF38BFC2DA3DEEB00BBBB13 /* Formatters */,
-				2BF38AEB2DA3BD1600BBBB13 /* Connectivity.swift */,
 				2BF38AD92DA0147200BBBB13 /* UIImageView+Download.swift */,
 				2BF38AD52D9FD7A600BBBB13 /* Collection+SafeSubscript.swift */,
 				2B877AD32D9F129000C31B5D /* HTTP Network */,
@@ -157,6 +154,7 @@
 		2B877AD92D9F129000C31B5D /* Domain Layer */ = {
 			isa = PBXGroup;
 			children = (
+				2BF38C872DA47A8200BBBB13 /* User Repository */,
 				2B877AD82D9F129000C31B5D /* Random User Service */,
 			);
 			path = "Domain Layer";
@@ -270,6 +268,13 @@
 				2BF38AD32D9FD6B000BBBB13 /* Date+Formatter.swift */,
 			);
 			path = Formatters;
+			sourceTree = "<group>";
+		};
+		2BF38C872DA47A8200BBBB13 /* User Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "User Repository";
 			sourceTree = "<group>";
 		};
 		2BF396C12D9E798600A9EABB = {
@@ -452,7 +457,6 @@
 				2B877AEF2D9F129000C31B5D /* RandomUserServiceResponse.swift in Sources */,
 				2BF38ADF2DA01D4F00BBBB13 /* ContactDetailViewController.swift in Sources */,
 				2BF38AD42D9FD6B000BBBB13 /* Date+Formatter.swift in Sources */,
-				2BF38AEC2DA3BD2300BBBB13 /* Connectivity.swift in Sources */,
 				2B877AF02D9F129000C31B5D /* AppDelegate.swift in Sources */,
 				2BF38AE62DA02D2A00BBBB13 /* ContactDetailViewModel.swift in Sources */,
 				2B877AF12D9F129000C31B5D /* SceneDelegate.swift in Sources */,

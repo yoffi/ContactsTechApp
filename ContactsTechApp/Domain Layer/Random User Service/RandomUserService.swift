@@ -13,10 +13,10 @@ class RandomUserService: RandomUserServiceInterface {
     self.apiClient = apiClient
   }
   
-  func fetchUsers() async throws -> [any UserInterface] {
+  func fetchUsers(page: Int) async throws -> [any UserInterface] {
     let request = JSONHTTPClient.JSONRequest(
       method: .get,
-      endpoint: "/api/?results=10"
+      endpoint: "/api/?page=\(page)&results=10&seed=technicaltest"
     )
     
     let result: Result<Response, HTTPClientError> = try await apiClient.execute(request)
@@ -31,7 +31,7 @@ class RandomUserService: RandomUserServiceInterface {
   func fetchUser(id: String) async throws -> any UserInterface {
     let request = JSONHTTPClient.JSONRequest(
       method: .get,
-      endpoint: "/api/?results=1"
+      endpoint: "/api/"
     )
     
     let result: Result<Response, HTTPClientError> = try await apiClient.execute(request)
