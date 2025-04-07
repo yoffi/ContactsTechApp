@@ -18,6 +18,12 @@ class ContactListViewController: UIViewController {
   private var viewModel: ContactListViewModel
   private(set) weak var cooridnator: (any ContactListActions)?
   private var loadContactTask: Task<Void, Never>?
+  
+  enum Section {
+    case main
+  }
+  
+  private var dataSource: UITableViewDiffableDataSource<Section, ConctactViewItem>!
 
 
   // MARK: - UI Components
@@ -26,7 +32,6 @@ class ContactListViewController: UIViewController {
     let tableView = UITableView()
     tableView.register(ConctacTableViewCell.self, forCellReuseIdentifier: ConctacTableViewCell.identifier)
     tableView.delegate = self
-    tableView.dataSource = self
     tableView.rowHeight = 70
     tableView.separatorStyle = .singleLine
     tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -72,8 +77,10 @@ class ContactListViewController: UIViewController {
     super.viewDidLoad()
     
     setupUI()
+    setupTableViewDataSource()
     
     registerForViewModelChanges()
+    populateDataSource(items: [])
     loadContactTask = Task {
       await viewModel.loadContacts()
     }
@@ -86,12 +93,43 @@ class ContactListViewController: UIViewController {
       viewModel.contacts
     } onChange: {
       Task { @MainActor in
-        self.tableView.reloadData()
+        self.populateDataSource(items: self.viewModel.contacts)
         self.registerForViewModelChanges()
       }
     }
   }
 }
+
+// MARK: - TableView DataSource
+
+extension ContactListViewController {
+  func setupTableViewDataSource() {
+    dataSource = UITableViewDiffableDataSource(
+      tableView: tableView,
+      cellProvider: cellProviderFor(tableView:indexPath:item:))
+  }
+  
+  func cellProviderFor(tableView: UITableView, indexPath: IndexPath, item: ConctactViewItem) -> UITableViewCell {
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: ConctacTableViewCell.identifier, for: indexPath) as? ConctacTableViewCell,
+          let contact = self.viewModel.contacts[safe: indexPath.row] else {
+      return UITableViewCell()
+    }
+    
+    cell.configure(with: contact.asContactViewItem)
+    
+    return cell
+  }
+  
+  func populateDataSource(items: [ContactViewModel]) {
+    var snapshot = NSDiffableDataSourceSnapshot<Section, ConctactViewItem>()
+    snapshot.appendSections( [.main])
+    snapshot.appendItems(items.map(\.self).compactMap(\.asContactViewItem))
+    dataSource.apply(snapshot, animatingDifferences: true)
+  }
+}
+
+
+// MARK: - Tableview Delegate
 
 extension ContactListViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -103,27 +141,10 @@ extension ContactListViewController: UITableViewDelegate {
   }
 }
 
-extension ContactListViewController: UITableViewDataSource {
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    viewModel.contacts.count
-  }
-  
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: ConctacTableViewCell.identifier, for: indexPath) as? ConctacTableViewCell,
-          let contact = viewModel.contacts[safe: indexPath.row] else {
-      return UITableViewCell()
-    }
-  
-    cell.configure(with: contact.asContactViewItem)
-    
-    return cell
-  }
-}
-
 // MARK: - Convert
 
 extension ContactViewModel {
   var asContactViewItem: ConctactViewItem {
-    .init(name: name, subtitle: memberSince, alternativeText: country, avatarImage: thumnaillUrl)
+    .init(id: id, name: name, subtitle: memberSince, alternativeText: country, avatarImage: thumnaillUrl)
   }
 }

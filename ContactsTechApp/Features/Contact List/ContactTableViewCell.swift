@@ -7,7 +7,8 @@
 
 import UIKit
 
-struct ConctactViewItem {
+struct ConctactViewItem: Hashable {
+  let id: String
   let name: String
   let subtitle: String
   let alternativeText: String

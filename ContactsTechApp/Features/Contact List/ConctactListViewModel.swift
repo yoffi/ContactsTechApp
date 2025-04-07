@@ -9,6 +9,7 @@ import Foundation
 import Observation
 
 struct ContactViewModel {
+  let id: String
   let name: String
   let memberSince: String
   let country: String
@@ -59,6 +60,7 @@ extension Array where Element == any UserInterface {
   var asContactsViewModel: [ContactViewModel] {
     map {
       .init(
+        id: $0.login.uuid,
         name: "\($0.name.first) \($0.name.last)",
         memberSince: "member since: \($0.registered.date.relativeDate())",
         country: $0.nat,
