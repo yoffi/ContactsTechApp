@@ -44,6 +44,22 @@ class ContactListViewModel {
     }
   }
   
+  func reloadContacts() async {
+    do {
+      let users = try await randomUserService.fetchUsers()
+      await reloadContactsWith(users: users)
+    } catch {
+      print(error)
+    }
+  }
+  
+  func reloadContactsWith(users: [any UserInterface]) async {
+    let newContacts = users.asContactsViewModel
+    await MainActor.run {
+      self.contacts = newContacts
+    }
+  }
+
   @MainActor
   func willDisplayRowa(at index: Int) {
     if index == contacts.count - 1 {

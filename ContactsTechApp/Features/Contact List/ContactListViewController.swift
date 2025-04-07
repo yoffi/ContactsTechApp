@@ -35,6 +35,8 @@ class ContactListViewController: UIViewController {
     tableView.rowHeight = 70
     tableView.separatorStyle = .singleLine
     tableView.translatesAutoresizingMaskIntoConstraints = false
+    tableView.refreshControl = UIRefreshControl()
+    tableView.refreshControl?.addTarget(self, action: #selector(userDidPullToRefresh), for: .valueChanged)
     return tableView
   }()
   
@@ -138,6 +140,19 @@ extension ContactListViewController: UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     cooridnator?.showContactDetails(for: viewModel.contacts[indexPath.row].name)
+  }
+}
+
+// MARK: - Action
+
+extension ContactListViewController {
+  @objc func userDidPullToRefresh() {
+    loadContactTask = Task {
+      await viewModel.reloadContacts()
+      await MainActor.run {
+        tableView.refreshControl?.endRefreshing()
+      }
+    }
   }
 }
 
