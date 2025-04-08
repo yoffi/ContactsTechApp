@@ -8,10 +8,11 @@
 import Foundation
 
 extension DateFormatter {
-  static let RelativeDateFormatter: RelativeDateTimeFormatter = {
-    let formatter = RelativeDateTimeFormatter()
-    formatter.unitsStyle = .abbreviated
-    return formatter
+  static let relativeFormatStyle: Date.RelativeFormatStyle = {
+    Date.RelativeFormatStyle(
+      presentation: .named,
+      unitsStyle: .abbreviated
+    )
   }()
     
   static let BirthdayDataFormatter: DateFormatter = {
@@ -28,5 +29,14 @@ extension DateFormatter {
     dateFormatter.timeStyle = .medium
     dateFormatter.locale = Locale.current
     return dateFormatter
+  }()
+
+  static let ServerDateStyle: Date.ISO8601FormatStyle = {
+    Date.ISO8601FormatStyle(
+      dateSeparator: .dash,
+      dateTimeSeparator: .standard,
+      timeSeparator: .colon,
+      timeZoneSeparator: .omitted,
+      includingFractionalSeconds: true)
   }()
 }

@@ -6,7 +6,7 @@
 //
 
 /// Concrete class implementation that fetch data over HTTP network request
-class RandomUserService: RandomUserServiceInterface {
+final class RandomUserService: RandomUserServiceInterface {
   private let apiClient: any HTTPClientInterface
 
   init(apiClient: any HTTPClientInterface) {

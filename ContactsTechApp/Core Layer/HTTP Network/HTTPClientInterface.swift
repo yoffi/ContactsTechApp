@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol HTTPClientInterface {
+public protocol HTTPClientInterface: Sendable {
   /// The URL session used for networking
   var session: URLSession { get }
 

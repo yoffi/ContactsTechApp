@@ -8,7 +8,7 @@
 import Foundation
 
 /// A light simple Web HTTP Notworking client for JSON Content type.
-public class JSONHTTPClient: HTTPClientInterface {
+public final class JSONHTTPClient: HTTPClientInterface {
   public typealias RequestType = JSONRequest
   
   public let session: URLSession

@@ -11,9 +11,9 @@ struct ContactDetailViewItem {
   let fullname: String
 }
 
-class ContactDetailViewModel {
-  private var randomUserService: RandomUserServiceInterface
-  private var userID: String
+final class ContactDetailViewModel: Sendable {
+  private let randomUserService: RandomUserServiceInterface
+  private let userID: String
 
   init(randomUserService: RandomUserServiceInterface, userID: String) {
     self.randomUserService = randomUserService

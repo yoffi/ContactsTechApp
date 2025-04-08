@@ -18,12 +18,12 @@ struct ContactViewModel {
 }
 
 @Observable
-class ContactListViewModel {
+final class ContactListViewModel: Sendable {
   
-  @ObservationIgnored private var randomUserService: RandomUserServiceInterface
+  @ObservationIgnored private let randomUserService: RandomUserServiceInterface
   @MainActor private(set) var contacts: [ContactViewModel] = []
-  @ObservationIgnored private var pager = Pager()
-  actor Pager {
+  @ObservationIgnored private let pager = Pager()
+  actor Pager: Sendable {
     private(set) var page: Int = 0
     
     func next() -> Int {

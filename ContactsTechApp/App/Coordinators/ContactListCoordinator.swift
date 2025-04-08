@@ -7,7 +7,8 @@
 
 import UIKit
 
-class ContactListCoordinator: ContactListActions, Coordinator {
+@MainActor
+final class ContactListCoordinator: ContactListActions, Coordinator {
   var childCoordinators: [any Coordinator] = []
   
   private weak var navigationController: UINavigationController?

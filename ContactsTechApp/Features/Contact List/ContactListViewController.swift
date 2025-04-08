@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Observation
 
+@MainActor
 protocol ContactListActions: AnyObject {
   func showContactDetails(for id: String)
 }
@@ -204,7 +205,7 @@ extension ContactViewModel {
       id: id,
       firstname: firstname,
       lastname: lastname,
-      subtitle: DateFormatter.RelativeDateFormatter.localizedString(for: memberSince, relativeTo: .now),
+      subtitle: memberSince.formatted(DateFormatter.relativeFormatStyle),
       alternativeText: country,
       avatarImage: thumnaillUrl
     )

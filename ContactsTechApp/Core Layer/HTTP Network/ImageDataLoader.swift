@@ -7,9 +7,9 @@
 
 import Foundation
 
-class ImageDataLoader {
-  private(set) var session: URLSession
-  private(set) var cache: URLCache
+final class ImageDataLoader: Sendable {
+  private let session: URLSession
+  private let cache: URLCache
   
   init(session: URLSession = .shared, cache: URLCache = .shared) {
     self.session = session

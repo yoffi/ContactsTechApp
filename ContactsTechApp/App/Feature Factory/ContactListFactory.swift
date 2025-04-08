@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+@MainActor
 class ContactListFactory {
   static func makeViewController(client: JSONHTTPClient, coordinator: ContactListCoordinator) -> UIViewController {
     

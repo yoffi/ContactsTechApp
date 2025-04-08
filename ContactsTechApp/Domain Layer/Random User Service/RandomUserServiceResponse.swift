@@ -193,19 +193,12 @@ extension RandomUserService {
       case date, age
     }
     
-    private static let ServerDateFormatter: ISO8601DateFormatter = {
-      let dateFormatter = ISO8601DateFormatter()
-      dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-      return dateFormatter
-    }()
-    
     init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       age = try container.decode(Int.self, forKey: .age)
       
       let dateString = try container.decode(String.self, forKey: .date)
-      let dateFormatter = Anniversary.ServerDateFormatter
-      if let date = dateFormatter.date(from: dateString) {
+      if let date = try? DateFormatter.ServerDateStyle.parse(dateString) {
         self.date = date
       } else {
         throw DecodingError.dataCorruptedError(forKey: .date, in: container, debugDescription: "Date format is not valid")

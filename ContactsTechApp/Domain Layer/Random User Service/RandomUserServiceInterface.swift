@@ -7,12 +7,12 @@
 
 import Foundation
 
-protocol RandomUserServiceInterface {
+protocol RandomUserServiceInterface: Sendable {
   func fetchUsers(page: Int) async throws -> [any UserInterface]
   func fetchUser(id: String) async throws -> any UserInterface
 }
 
-protocol UserInterface {
+protocol UserInterface: Sendable {
   associatedtype NameType: NameInterface
   associatedtype LocationType: LocationInterface
   associatedtype LoginType: LoginInterface
@@ -34,13 +34,13 @@ protocol UserInterface {
   var nat: String { get }
 }
 
-protocol NameInterface {
+protocol NameInterface: Sendable {
   var title: String { get }
   var first: String { get }
   var last: String { get }
 }
 
-protocol LocationInterface {
+protocol LocationInterface: Sendable {
   associatedtype StreetType: StreetInterface
   associatedtype CoordinatesType: CoordinatesInterface
   associatedtype TimeZoneType: TimezoneInterface
@@ -54,22 +54,22 @@ protocol LocationInterface {
   var timezone: TimeZoneType { get }
 }
 
-protocol StreetInterface {
+protocol StreetInterface: Sendable {
   var number: Int { get }
   var name: String { get }
 }
 
-protocol CoordinatesInterface {
+protocol CoordinatesInterface: Sendable {
   var latitude: Double { get }
   var longitude: Double { get }
 }
 
-protocol TimezoneInterface {
+protocol TimezoneInterface: Sendable {
   var offset: String { get }
   var description: String { get }
 }
 
-protocol LoginInterface {
+protocol LoginInterface: Sendable {
   var uuid: String { get }
   var username: String { get }
   var password: String { get }
@@ -79,17 +79,17 @@ protocol LoginInterface {
   var sha256: String { get }
 }
 
-protocol AnniversaryInterface {
+protocol AnniversaryInterface: Sendable {
   var date: Date { get }
   var age: Int { get }
 }
 
-protocol IDInterface {
+protocol IDInterface: Sendable {
   var name: String { get }
   var value: String? { get }
 }
 
-protocol PictureInterface {
+protocol PictureInterface: Sendable {
   var large: URL { get }
   var medium: URL { get }
   var thumbnail: URL { get }

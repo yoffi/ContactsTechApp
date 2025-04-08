@@ -7,12 +7,14 @@
 
 import UIKit
 
+@MainActor
 protocol Coordinator: AnyObject {
   var childCoordinators: [Coordinator] { get set }
   func finish(_ child: (any Coordinator)?)
 }
 
-class AppCoordinator: NSObject, Coordinator {
+@MainActor
+final class AppCoordinator: NSObject, Coordinator {
   var childCoordinators: [Coordinator] = []
   var parentCoordinator: (any Coordinator)? = nil
   

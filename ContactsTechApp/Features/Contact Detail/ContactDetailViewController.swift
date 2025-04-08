@@ -45,10 +45,8 @@ class ContactDetailViewController: UIViewController {
     setupUI()
     loadTask = Task { @MainActor in
       if let user = await viewModel.loadDetails() {
-        await MainActor.run {
-          self.user = user
-          configureUI()
-        }
+        self.user = user
+        configureUI()
       }
     }
   }
