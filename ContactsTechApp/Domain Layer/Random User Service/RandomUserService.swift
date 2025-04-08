@@ -31,7 +31,7 @@ final class RandomUserService: RandomUserServiceInterface {
   func fetchUser(id: String) async throws -> any UserInterface {
     let request = JSONHTTPClient.JSONRequest(
       method: .get,
-      endpoint: "/api/"
+      endpoint: "/api/?seed=\(id)"
     )
     
     let result: Result<Response, HTTPClientError> = try await apiClient.execute(request)

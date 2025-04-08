@@ -28,7 +28,7 @@ final class AppCoordinator: NSObject, Coordinator {
     
     let configuration = URLSessionConfiguration.default
     configuration.waitsForConnectivity = false
-    configuration.requestCachePolicy = .useProtocolCachePolicy
+    configuration.requestCachePolicy = .returnCacheDataElseLoad
     configuration.urlCache = cache
     
     return URLSession(configuration: configuration)
