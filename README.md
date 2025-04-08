@@ -50,3 +50,13 @@ For the UI part in the Presentation Layer, I'm using MVVM UI Pattern since is wh
 
 An another benefit of this architecture is that the UI part is independent of the rest. So it could be build with UIKit or SWiftUI. And follow any Pattern UI that the team choose to go with. Even a mix or progressive adoption to SwiftUI could be considered.
 
+### Time Spent
+
+I spent approximately 48 hours on this, within few hours per day. It was what I expected.
+
+### Notes
+
+- The project conforms to Strict Swift 6 Concurrency Language Mode
+- I assumed that the Random User API would have a method to get users by ID, but this is not the case. In a real project, this functionality should exist. So the detail view is not displaying correct information regarding of the id. but random user seeded info. 
+- We could reduce data usage by configuring the list API call to exclude unnecessary fields, making responses lighter.
+- I didn't unit test everything, just a few components for demonstration purposes, but I've architected things to be testable.
