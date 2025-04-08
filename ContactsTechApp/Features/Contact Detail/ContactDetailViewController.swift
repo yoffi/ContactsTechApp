@@ -7,16 +7,33 @@
 
 import UIKit
 
+struct ContactDetailViewItem {
+  let fullname: String
+  let pictureURL: URL
+  let sections: [ContactDetailSecionViewItem]
+}
+
+struct ContactDetailSecionViewItem {
+  let title: String
+  let systemName: String
+  let rows: [ContactDetailSectionRowViewItem]
+}
+
+struct ContactDetailSectionRowViewItem {
+  let label: String
+  let value: String
+}
+
+
 class ContactDetailViewController: UIViewController {
   
   private(set) weak var coordinator: Coordinator?
   private var viewModel: ContactDetailViewModel
-  private var user: (any UserInterface)!
+  private var userViewModelItem: ContactDetailViewItem!
   private var loadTask: Task<Void, Never>?
   private var loadImageTask: Task<Void, Never>?
   private let scrollView = UIScrollView()
   private let contentView = UIView()
-
   
   // MARK: - Init
   
@@ -45,7 +62,7 @@ class ContactDetailViewController: UIViewController {
     setupUI()
     loadTask = Task { @MainActor in
       if let user = await viewModel.loadDetails() {
-        self.user = user
+        self.userViewModelItem = user.asContactViewItem
         configureUI()
       }
     }
@@ -134,129 +151,20 @@ class ContactDetailViewController: UIViewController {
     
     // Load user image
     loadImageTask = Task {
-      await userImageView.loadImage(from: user.picture.large)
+      await userImageView.loadImage(from: userViewModelItem.pictureURL)
     }
     
-    userNameLabel.text = PersonNameComponentsFormatter.longStyle.fullNameFormatted(
-      with: user.name.title,
-      first: user.name.first,
-      last: user.name.last)    
+    userNameLabel.text = userViewModelItem.fullname
     
-    // Add all user details to stack view
-    addBasicInfoSection()
-    addContactInfoSection()
-    addLocationSection()
-    addLoginSection()
-    addIdsSection()
-    addRegistrationSection()
-  }
-  
-  // MARK: - Sections Configuration
-  
-  private func addBasicInfoSection() {
-    let sectionView = createSectionView(title: "Basic Information", iconName: "person.fill")
-    
-    // Gender
-    addDetailRow(to: sectionView, title: "Gender", value: user.gender)
-    
-    // Nationality
-    addDetailRow(to: sectionView, title: "Nationality", value: user.nat)
-    
-    // Date of birth
-    let dobDateFormatted = DateFormatter.BirthdayDataFormatter.string(from: user.dob.date)
-    
-    addDetailRow(to: sectionView, title: "Date of Birth", value: dobDateFormatted)
-    addDetailRow(to: sectionView, title: "Age", value: "\(user.dob.age)")
-    
-    detailStackView.addArrangedSubview(sectionView)
-  }
-  
-  private func addContactInfoSection() {
-    let sectionView = createSectionView(title: "Contact Information", iconName: "envelope.fill")
-    
-    // Email
-    addDetailRow(to: sectionView, title: "Email", value: user.email, isEmail: true)
-    
-    // Phone numbers
-    let formattedPhone = NumberFormatter.PhoneFormatter.string(from: user.phone)
-    let formattedCell = NumberFormatter.PhoneFormatter.string(from: user.cell)
-    
-    addDetailRow(to: sectionView, title: "Phone", value: formattedPhone, isPhone: true)
-    addDetailRow(to: sectionView, title: "Cell", value: formattedCell, isPhone: true)
-    
-    detailStackView.addArrangedSubview(sectionView)
-  }
-  
-  private func addLocationSection() {
-    let sectionView = createSectionView(title: "Location", iconName: "mappin.and.ellipse")
-    
-    // Street
-    let streetValue = "\(user.location.street.number) \(user.location.street.name)"
-    addDetailRow(to: sectionView, title: "Street", value: streetValue)
-    
-    // City, State, Country
-    addDetailRow(to: sectionView, title: "City", value: user.location.city)
-    addDetailRow(to: sectionView, title: "State", value: user.location.state)
-    addDetailRow(to: sectionView, title: "Country", value: user.location.country)
-    
-    // Postcode
-    addDetailRow(to: sectionView, title: "Postcode", value: user.location.postcode)
-    
-    // Coordinates
-    let coordinatesFormatted = NumberFormatter.CoordinateFromatter.string(
-      latitude: user.location.coordinates.latitude,
-      longitude: user.location.coordinates.longitude)
-    addDetailRow(to: sectionView, title: "Coordinates", value: coordinatesFormatted)
-    
-    // Timezone
-    let timezoneValue = "\(user.location.timezone.offset) (\(user.location.timezone.description))"
-    addDetailRow(to: sectionView, title: "Timezone", value: timezoneValue)
-    
-    detailStackView.addArrangedSubview(sectionView)
-  }
-  
-  private func addLoginSection() {
-    let sectionView = createSectionView(title: "Login Information", iconName: "lock.fill")
-    
-    // Username
-    addDetailRow(to: sectionView, title: "Username", value: user.login.username)
-    
-    // UUID
-    addDetailRow(to: sectionView, title: "UUID", value: user.login.uuid)
-    
-    // Password (masked for security)
-    let maskedPassword = String(repeating: "•", count: user.login.password.count)
-    addDetailRow(to: sectionView, title: "Password", value: maskedPassword)
-    
-    detailStackView.addArrangedSubview(sectionView)
-  }
-  
-  private func addIdsSection() {
-    let sectionView = createSectionView(title: "ID Information", iconName: "person.text.rectangle.fill")
-    
-    // ID name and value
-    addDetailRow(to: sectionView, title: "ID Type", value: user.id.name)
-    
-    if let idValue = user.id.value {
-      addDetailRow(to: sectionView, title: "ID Value", value: idValue)
-    } else {
-      addDetailRow(to: sectionView, title: "ID Value", value: "Not available")
+    for section in userViewModelItem.sections {
+      let sectionView =  createSectionView(title: section.title, iconName: section.systemName)
+      for row in section.rows {
+        addDetailRow(to: sectionView, title: row.label, value: row.value)
+      }
+      detailStackView.addArrangedSubview(sectionView)
     }
-    
-    detailStackView.addArrangedSubview(sectionView)
   }
   
-  private func addRegistrationSection() {
-    let sectionView = createSectionView(title: "Registration Information", iconName: "calendar.badge.clock")
-    
-    // Registration date
-    let formattedDate = DateFormatter.EventDataFormatter.string(from: user.registered.date)
-    
-    addDetailRow(to: sectionView, title: "Registered Date", value: formattedDate)
-    addDetailRow(to: sectionView, title: "Membership Duration", value: "\(user.registered.age) years")
-    
-    detailStackView.addArrangedSubview(sectionView)
-  }
   
   // MARK: - Helper Methods
   
@@ -330,7 +238,7 @@ class ContactDetailViewController: UIViewController {
     return sectionView
   }
   
-  private func addDetailRow(to sectionView: UIView, title: String, value: String, isEmail: Bool = false, isPhone: Bool = false) {
+  private func addDetailRow(to sectionView: UIView, title: String, value: String) {
     guard let detailsStack = sectionView.viewWithTag(100) as? UIStackView else { return }
     
     let rowStack = UIStackView()
@@ -355,14 +263,6 @@ class ContactDetailViewController: UIViewController {
     valueLabel.numberOfLines = 0
     valueLabel.translatesAutoresizingMaskIntoConstraints = false
     
-    // Add tappable interaction for email and phone
-    if isEmail || isPhone {
-      valueLabel.textColor = .accent
-      valueLabel.isUserInteractionEnabled = true
-      
-      let tapGesture = UITapGestureRecognizer(target: self, action: isEmail ? #selector(emailTapped(_:)) : #selector(phoneTapped(_:)))
-      valueLabel.addGestureRecognizer(tapGesture)
-    }
     
     rowStack.addArrangedSubview(titleLabel)
     rowStack.addArrangedSubview(valueLabel)
@@ -394,5 +294,28 @@ class ContactDetailViewController: UIViewController {
     if let url = URL(string: "tel:\(numericPhone)") {
       UIApplication.shared.open(url)
     }
+  }
+}
+
+// MARK: - Converts
+
+extension ContactDetailViewModelItem {
+  var asContactViewItem: ContactDetailViewItem {
+    return ContactDetailViewItem(
+      fullname: self.fullname,
+      pictureURL: self.pictureURL,
+      sections: self.sections.map { section in
+        ContactDetailSecionViewItem(
+          title: section.title,
+          systemName: section.systemName,
+          rows: section.rows.map { row in
+            ContactDetailSectionRowViewItem(
+              label: row.label,
+              value: row.value
+            )
+          }
+        )
+      }
+    )
   }
 }

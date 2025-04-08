@@ -40,3 +40,16 @@ extension DateFormatter {
       includingFractionalSeconds: true)
   }()
 }
+
+extension DateComponentsFormatter {
+  static let YearDurationFormatter: DateComponentsFormatter = {
+    let formatter = DateComponentsFormatter()
+    formatter.allowedUnits = [.year]
+    formatter.unitsStyle = .full
+    return formatter
+  }()
+  
+  func string(from years: Int) -> String {
+    self.string(from: DateComponents(year: years)) ?? "\(years)"
+  }
+}
